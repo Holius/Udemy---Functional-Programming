@@ -49,7 +49,7 @@
 // create the code to go from studentGrades array, 
 // to studentFeedback (as shown in comments below)
 
-//
+
 const studentGrades = [ 
   {name: 'Joe', grade: 88},
   {name: 'Jen', grade: 94},
@@ -58,31 +58,32 @@ const studentGrades = [
   {name: 'Gina', grade: 54},
 ];
 
-const comments = studentGrades.map(x => createGreeting(x.grade)(x.name));
-console.log(comments)
+function createGreeting() {
 
-function createGreeting(grade) {
+  return function handleGreeting(log) {
 
-  const convertedGrade = function (grade) {
-    return grade >= 90 ? 'a'
+    const convertedGrade = function (grade) {
+      return grade >= 90 ? 'a'
           : grade >= 80 ? 'b'
           : grade >= 70 ? 'c'
           : grade >= 60 ? 'd'
           : 'f';
-  }(grade);
+    }(log.grade);
 
-return function handleGreeting(name) {
-  return convertedGrade === 'a' ?
-        `Exceelent Job ${name}, you got an ${convertedGrade}`
+    return convertedGrade === 'a' ?
+        `Excellent Job ${log.name}, you got an a`
         : convertedGrade === 'b' ?
-        `Nice Job ${name}, you got an ${convertedGrade}`
+        `Nice Job ${log.name}, you got a b`
         : convertedGrade === 'c' ?
-        `Well Done ${name}, you got an ${convertedGrade}`
-        : convertedGrade === 'd' ?
-         `What Happened ${name}, you got an ${convertedGrade}`
-        : `Not Good ${name}, you got an ${convertedGrade}`;
+        `Well Done ${log.name}, you got a c`
+        : convertedGrad e === 'd' ?
+         `What Happened ${log.name}, you got a d`
+        : `Not Good ${log.name}, you got an f}`;
         };
 }
+
+const comments = studentGrades.map(createGreeting());
+console.log(comments)
 // console.log (
 //   handleGrades(90),
 //   handleGreeting(handleGrades(80), 'Jooooost')
